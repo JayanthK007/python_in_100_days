@@ -28,7 +28,7 @@ def encrypt(text, shift):
            num=(num+shift)%26
            encrypted_text+=alphabet[num] 
         else:
-            encrypted_text+=" "   
+            encrypted_text+=i   
         
     print(encrypted_text)      
 
@@ -40,7 +40,7 @@ def decrypt(text,shift):
             num=abs(num-shift)%26 
             decrypted_text+=alphabet[num]
         else:
-            decrypted_text+=" "    
+            decrypted_text+=i    
         
     print(decrypted_text)         
 
