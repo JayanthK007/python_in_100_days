@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import messagebox
 from random import choice,randint,shuffle
 import pyperclip
+import json
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 #Password Generator Project
 def generate_password():
@@ -24,17 +25,47 @@ def add_password():
     website = website_input.get()
     email = email_user_name_input.get()
     password = password_input.get()
+    new_data = {
+        website:{
+            "email":email,
+            "password":password
+            }
+            }
     
     if len(website)==0 or len(password)==0:
         messagebox.showinfo(title='Oops',message='Please don\'t leave any fields empty')
-    else:    
-        is_ok=messagebox.askokcancel(title=f'{website}',message=f'These are the details entered:\nEmail:{email}\n Passowrd:{password}\n Is it ok to save?')
-        
-        if is_ok:
-            with open("data.txt",'a') as file:
-                file.write(f"{website} | {email} | {password}\n")
+    else: 
+            try:
+                with open('data.json','r') as file:
+                    data = json.load(file)
+                    
+            except FileNotFoundError:
+                    with open("data.json",'w') as file:
+                        json.dump(new_data,file,indent=4)
+            else:
+                 data.update(new_data)
+                 with open("data.json",'w') as file:
+                        json.dump(data,file,indent=4)            
+            finally:
                 website_input.delete(0,'end')
                 password_input.delete(0,'end')
+
+# --------------------------- Search ---------------------------------- # 
+
+def search():
+     search_element=website_input.get()
+     try:
+        with open('data.json') as file:
+            data = json.load(file)
+            email = data[search_element]['email']
+            password = data[search_element]['password']
+     except FileNotFoundError:
+            messagebox.showinfo(title='Error',message='No Data File Found')
+     except KeyError:
+          messagebox.showinfo(title='Error',message=f'No details for {search_element} exists')
+     else:       
+            messagebox.showinfo(title=search_element,message=f"Email: {email}\nPassword: {password}")
+
 # ---------------------------- UI SETUP ------------------------------- #
 
 window=Tk()
@@ -50,27 +81,31 @@ canvas.grid(row=0,column=1)
 website_label=Label(text="Website: ")
 website_label.grid(row=1,column=0)
 
-website_input=Entry(width=35)
+website_input=Entry(width=22)
 website_input.focus()
-website_input.grid(row=1,column=1,columnspan=2)
+website_input.grid(row=1,column=1)
+
+search_button=Button(width=14)
+search_button.config(text='Search',command=search)
+search_button.grid(row=1,column=2)
 
 email_user_name=Label(text="Email/Username: ")
 email_user_name.grid(row=2,column=0)
 
-email_user_name_input=Entry(width=35)
+email_user_name_input=Entry(width=40)
 email_user_name_input.insert(0,'jayanth@gmail.com')
 email_user_name_input.grid(row=2,column=1,columnspan=2)
 
 password_label=Label(text='Password: ')
 password_label.grid(row=3,column=0)
 
-password_input=Entry(width=17)
+password_input=Entry(width=22)
 password_input.grid(row=3,column=1)
 
 generate_password_button=Button(width=14,text="Generate Password",command=generate_password)
 generate_password_button.grid(row=3,column=2)
 
-add_button=Button(width=29,text='Add',command=add_password)
+add_button=Button(width=34,text='Add',command=add_password)
 add_button.grid(row=4,column=1,columnspan=2)
 
 

@@ -29,7 +29,13 @@ new_dictionary={row.letter:row.code for(index,row) in phonetic_alphabet.iterrows
 {"A": "Alfa", "B": "Bravo"}
 
 #TODO 2. Create a list of the phonetic code words from a word that the user inputs.
-user_input=input("Enter a word: ")
-new_word=[new_dictionary[word] for word in user_input.upper()]
-print(new_word)
+while True:
+    try:
+        user_input=input("Enter a word: ")
+        new_word=[new_dictionary[word] for word in user_input.upper()]
+    except KeyError: 
+        print("Sorry, only letters in the alphabets are allowed.")
+    else:       
+        print(new_word)
+        break
 
