@@ -17,8 +17,7 @@ else:
 
 
 def generate_unknown_word():
-    global current_data,flip_timer
-    window.after_cancel(flip_timer)
+    global current_data
     french_data.remove(current_data)
     data=pandas.DataFrame(french_data)
     data.to_csv('data/words_to_learn.csv',index=False)
