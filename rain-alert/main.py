@@ -1,11 +1,18 @@
 
 import requests
 from twilio.rest import Client
+import os
+from dotenv import load_dotenv
 
-api_key='api_key_needs_to added'
-owm_url="https://api.openweathermap.org/data/2.5/forecast"
-account_sid = 'Twilio accound sid'
-auth_token = 'auth token for twilio account'
+
+load_dotenv()
+
+api_key=os.getenv('api_key')
+owm_url=os.getenv('owm_url')
+account_sid = os.getenv('account_sid')
+auth_token = os.getenv('auth_token')
+to_phone_number = os.getenv('my_num')
+
 
 parameters={
 'lat':51.507351,
@@ -13,6 +20,8 @@ parameters={
 'appid':api_key,
 'cnt':4
 }
+
+
 response=requests.get(url=owm_url,params=parameters)
 response.raise_for_status()
 weather_data=response.json()
@@ -28,7 +37,7 @@ if will_rain:
 
     message = client.messages.create(
     from_='+17819902304',
-    to='add_your number',
+    to=to_phone_number,
     body="It's going to rain today. Please remember to bring ☔"
     )
 
