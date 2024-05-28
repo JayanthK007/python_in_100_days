@@ -6,12 +6,16 @@ from flight_search import FlightSearch
 from data_manager import DataManager
 from flight_data import FlightData
 from datetime import datetime
+import dotenv,os
 
+dotenv.load_dotenv()
 
 data_manager=DataManager()
 
-sheet_data=requests.get(url='https://api.sheety.co/98cfb9c67a9da2a976701279c77b3e52/flightDeals/prices')
-
+sheet_data=requests.get(url='https://api.sheety.co/98cfb9c67a9da2a976701279c77b3e52/flightDeals/prices',headers={
+    'Authorization': f"Bearer {os.getenv('SHEETY_AUTH_TOKEN')}"
+})
+print(sheet_data.text)
 data=[]
 for flight_detail in sheet_data.json()['prices']:
     flight_search=FlightSearch(flight_detail)
@@ -40,6 +44,7 @@ else:
         this_month+=1
         
 for detail in data:
-    flight_data.search_flights('LON',detail['iataCode'],datetime(year=this_year,month=this_month,day=(today_day)).strftime('%Y-%m-%d'))    
+    travel_data=flight_data.search_flights('LON',detail['iataCode'],datetime(year=this_year,month=this_month,day=(today_day)).strftime('%Y-%m-%d'))    
 
+print(travel_data)
 

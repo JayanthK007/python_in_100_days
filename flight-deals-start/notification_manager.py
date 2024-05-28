@@ -1,3 +1,8 @@
 class NotificationManager:
-    #This class is responsible for sending notifications with the deal flight details.
-    pass
+    def __init__(self):
+        self.price=0
+        self.departure_airport=""
+        self.arrival_airport=""
+        self.outbound=''
+
+        
