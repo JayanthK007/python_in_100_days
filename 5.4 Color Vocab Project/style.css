@@ -1,0 +1,28 @@
+#red{
+    color:red;
+}
+
+#blue{
+    color:blue;
+}
+
+#orange{
+    color:orange;
+}
+
+#green{
+    color: green;
+}
+
+#yellow{
+    color: yellow;
+}
+
+img{
+    width: 300px;
+    height: 300px;
+}
+
+*{
+    font-family: sans-serif;
+}
