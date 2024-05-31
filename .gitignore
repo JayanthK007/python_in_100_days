@@ -12,3 +12,5 @@
 /workout-tracking/.env
 /flight-deals-start/__pycache__
 /flight-deals-start/.env
+/top-playlist-songs/.env
+/top-playlist-songs/.cache
