@@ -1,0 +1,23 @@
+h1{
+    font-family: "Gill Sans", sans-serif;
+    width: 30%;
+}
+.nav-bar{
+    display: flex;
+    justify-content: space-around;
+}
+
+nav{
+    
+    width: 50%;
+    justify-content: space-between;
+    
+}
+ul{
+    margin-top: 20px;;
+}
+li{
+    list-style: none;
+    display: inline-block;
+    margin: 10px;
+}

@@ -14,3 +14,4 @@
 /flight-deals-start/.env
 /top-playlist-songs/.env
 /top-playlist-songs/.cache
+/amazon-price-tracking/.env
