@@ -1,6 +1,10 @@
 h1{
-    font-family: "Gill Sans", sans-serif;
+    font-family: "Montserrat", sans-serif;
     width: 30%;
+    font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  color: #373A40;
 }
 .nav-bar{
     display: flex;
@@ -14,10 +18,88 @@ nav{
     
 }
 ul{
-    margin-top: 20px;;
+    margin: 27px auto;
+
 }
 li{
     list-style: none;
     display: inline-block;
-    margin: 10px;
+    margin: auto 20px;
+    font-size: 25px;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  color: #686D76; 
+}
+
+img{
+    width: 15em;
+    height: 15em;
+    border-radius: 50%;
+}
+
+.my-profile{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    margin: 100px;
+}
+
+h4{
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    color: #686D76;
+}
+h2{
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    color: #373A40;
+    font-size: 20px;
+}
+h3{
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    color: #686D76;
+}
+
+figure{
+    margin-right: 50px;
+}
+
+.intro{
+    height: 250px;
+    margin-top: 10px;
+
+}
+
+p{
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    background-color: #373A40;
+    color: aliceblue;
+    border-radius: 50px;
+    height: 30px;
+    padding-top: 8px;
+}
+
+i.fa{
+    margin: 2px;
+    font-size: 36px;
+}
+
+a{
+    color: black;
+
+}
+a:visited{
+    color: black;
+    
 }
