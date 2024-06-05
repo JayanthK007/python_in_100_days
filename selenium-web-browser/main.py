@@ -1,36 +1,17 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 
-# chrome_options=webdriver.ChromeOptions()
-# chrome_options.add_experimental_option('detach',True)
+chrome_options=webdriver.ChromeOptions()
+chrome_options.add_experimental_option('detach',True)
 
-# driver=webdriver.Chrome(options=chrome_options)
-# driver.get("https://www.amazon.com/dp/B075CYMYK6?psc=1&ref_=cm_sw_r_cp_ud_ct_FM9M699VKHTT47YD50Q6")
-
-# driver.quit()
-
-# price_dollar=driver.find_element(By.CLASS_NAME,'a-price-whole')
-# print(price_dollar.text)
-# price_cents=driver.find_element(By.CLASS_NAME,'a-price-fraction')
-# print(price_cents.text)
-
-# print(f"{price_dollar.text}.{price_cents.text}")
+driver=webdriver.Chrome(options=chrome_options)
+driver.get("https://www.amazon.com/dp/B075CYMYK6?psc=1&ref_=cm_sw_r_cp_ud_ct_FM9M699VKHTT47YD50Q6")
 
 # driver.quit()
 
+price_dollar=driver.find_element(By.CLASS_NAME,'a-price-whole')
+price_cents=driver.find_element(By.CLASS_NAME,'a-price-fraction')
 
-driver=webdriver.Chrome()
-driver.get('https://www.python.org/')
-
-events={}
-for index in range(5):
-    time=driver.find_element(By.XPATH,value=f'//*[@id="content"]/div/section/div[2]/div[2]/div/ul/li[{index+1}]/time')
-    event_name=driver.find_element(By.XPATH,value=f'//*[@id="content"]/div/section/div[2]/div[2]/div/ul/li[{index+1}]/a')
-    events[index]={
-        'time':time.text,
-        'name':event_name.text
-    }
-
-print(events)    
+print(price_dollar.text+'.'+price_cents)
 
 driver.quit()
