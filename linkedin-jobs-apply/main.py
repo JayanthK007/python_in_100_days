@@ -2,7 +2,9 @@ from selenium import webdriver
 from selenium.webdriver import ChromeOptions
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
-import time
+import time,os,dotenv
+
+dotenv.load_dotenv()
 
 
 chrome_options=ChromeOptions()
@@ -19,10 +21,10 @@ sign_in.send_keys(Keys.ENTER)
 time.sleep(2)
 
 user_name=driver.find_element(By.ID,'username')
-user_name.send_keys('jayanthkumarkarthik@gmail.com')
+user_name.send_keys(os.getenv('LINKEDIN_ID'))
 
 password=driver.find_element(By.ID,'password')
-password.send_keys('d=C5bDLbz/f&LW$')
+password.send_keys(os.getenv('LINKEDIN_PASSWORD'))
 
 login_button=driver.find_element(By.CSS_SELECTOR,'button.btn__primary--large')
 login_button.send_keys(Keys.ENTER)
