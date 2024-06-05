@@ -21,7 +21,7 @@ ul{
     margin: 27px auto;
 
 }
-li{
+li,a{
     list-style: none;
     display: inline-block;
     margin: auto 20px;
@@ -79,7 +79,7 @@ figure{
 
 }
 
-p{
+p.contact-info{
     font-family: "Montserrat", sans-serif;
     font-optical-sizing: auto;
     font-weight: 400;
@@ -89,17 +89,24 @@ p{
     height: 30px;
     padding-top: 8px;
 }
+a{
+    text-decoration: none;
+}
+a:visited{
+    color: #373A40;
+    text-decoration: none;
 
+}
 i.fa{
     margin: 2px;
     font-size: 36px;
 }
 
-a{
+a.social{
     color: black;
 
 }
-a:visited{
+a.social:visited{
     color: black;
     
 }
