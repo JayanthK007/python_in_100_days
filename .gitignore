@@ -17,3 +17,5 @@
 /amazon-price-tracking/.env
 /linkedin-jobs-apply/.env
 /tinder-matching/.env
+/twitter-bot/.env
+/twitter-bot/__pycache__

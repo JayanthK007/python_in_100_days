@@ -69,3 +69,5 @@ password_input.send_keys(Keys.ENTER,password)
 
 button_pass=driver.find_element(By.XPATH,'')
 button_email.send_keys(Keys.ENTER)
+
+# google account auth error cannot resolve that we need to do more things.
