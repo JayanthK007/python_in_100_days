@@ -19,3 +19,5 @@
 /tinder-matching/.env
 /twitter-bot/.env
 /twitter-bot/__pycache__
+/insta-followers/.env
+/insta-followers/__pycache__
