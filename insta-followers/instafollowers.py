@@ -1,7 +1,8 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
 from selenium.webdriver import ChromeOptions
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 import os,dotenv,time
 
 dotenv.load_dotenv()
@@ -29,11 +30,51 @@ class InstaFollower:
         self.notifications.click()
 
     def find_follower(self):
-        self.search=self.driver.find_element(By.CSS_SELECTOR,'svg[aria-label=Search]')
+        time.sleep(2)
+        self.driver.get(f'https://www.instagram.com/{os.getenv('FIND_PAGE')}/')
+        self.search=self.driver.find_element(By.CSS_SELECTOR,f"a[href*='followers']")
         self.search.click()
-        time.sleep(1)
-        self.search_input=self.driver.find_element(By.CSS_SELECTOR,'input[placeholder=Search]')
-        self.search_input.send_keys(os.getenv('FIND_PAGE'))
+        time.sleep(3)
+        
+
+    # Get the scrollable container inside the popup
+        self.popup = WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.XPATH, "//div[@role='dialog']//div[@class='xyi19xy x1ccrb07 xtf3nb5 x1pc53ja x1lliihq x1iyjqo2 xs83m0k xz65tgg x1rife3k x1n2onr6']")))
+
+        # Scroll the popup
+        last_height = self.driver.execute_script("return arguments[0].scrollHeight", self.popup)
+        
+        while True:
+            self.driver.execute_script("arguments[0].scrollTop = arguments[0].scrollHeight", self.popup)
+            time.sleep(2) # Adjust sleep time if necessary
+            
+            new_height = self.driver.execute_script("return arguments[0].scrollHeight", self.popup)
+            
+            if new_height == last_height:
+                break
+            
+            last_height = new_height
+
+
 
     def follow(self):
-        ...            
+        time.sleep(3)
+        # Get all follow buttons
+        follow_buttons = self.popup.find_elements(By.CSS_SELECTOR, "button[type=button]")
+
+        # Follow each user in the popup
+        for button in follow_buttons:
+            try:
+                button.click()
+                time.sleep(1)  # Optional: Add a small delay to prevent rate-limiting
+            except Exception as e:
+                # Handle ElementClickInterceptedException (popup for unfollow confirmation)
+                if "ElementClickInterceptedException" in str(e):
+                    try:
+                        # Click on the "Cancel" button to dismiss the popup
+                        cancel_button = self.driver.find_element(By.XPATH, "//button[text()='Cancel']")
+                        cancel_button.click()
+                    except Exception as e:
+                        print(f"Failed to handle popup: {str(e)}")
+                else:
+                    print(f"Failed to follow: {str(e)}")
+
