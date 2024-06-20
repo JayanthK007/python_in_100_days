@@ -7,9 +7,33 @@ def hello_world():
     return "<p>Hello, World!</p>"
 
 
+def bold(func):
+    def wrapper_func():
+        return '<b>'+func()+'</b>'
+    return wrapper_func
+
+def italic(func):
+    def wrapper_func():
+        return '<em>'+func()+'</em>'
+    return wrapper_func
+def underline(func):
+    def wrapper_func():
+        return '<u>'+func()+'</u>'
+    return wrapper_func
+    
+@app.route("/bye")
+@bold
+@italic
+@underline
+def bye():
+    return "bye!"
+
+@app.route('/username/<name>/<int:number>')
+def greet(name,number):
+    return f"Hello, {name}! You are {number} years old."
 
 if __name__=='__main__':
-    app.run()
+    app.run(debug=True)
 
 
 #decorator function 
