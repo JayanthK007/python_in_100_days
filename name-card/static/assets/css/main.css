@@ -1,0 +1,35 @@
+body{
+	background-image: url('https://cdn.statically.io/img/codetheweb.blog/assets/img/posts/css-advanced-background-images/cover.jpg?f=webp&w=1440');
+	position: relative;
+}
+
+.container{
+	margin: 10% auto;
+	background-color: aliceblue;
+	width: 30%;
+	height: 30%;
+}
+
+img{
+	border-radius: 50%;
+	width: 200px;
+	height: 200px;
+	margin: 10% 25%;
+}
+
+h1,p{
+	text-align: center;
+	color: darkgray;
+}
+
+hr{
+	text-align: center;
+	width: 50%;
+	color: black;
+}
+
+.caption{
+	text-align: center;
+	color: azure;
+	position: sticky;
+}
